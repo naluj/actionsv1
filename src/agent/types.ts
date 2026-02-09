@@ -50,7 +50,7 @@ export interface TaskRecord {
 }
 
 export interface AgentModelConfig {
-  provider: 'openai' | 'anthropic' | 'ollama';
+  provider: 'openai' | 'anthropic' | 'gemini' | 'kimi' | 'ollama';
   model: string;
   temperature: number;
   maxIterations: number;

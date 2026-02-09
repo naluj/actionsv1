@@ -10,6 +10,8 @@ export const appConfigSchema = z.object({
   providers: z.object({
     openai: providerSchema.optional(),
     anthropic: providerSchema.optional(),
+    gemini: providerSchema.optional(),
+    kimi: providerSchema.optional(),
     ollama: z
       .object({
         apiBase: z.string().url().default('http://localhost:11434'),
@@ -18,7 +20,7 @@ export const appConfigSchema = z.object({
       .optional(),
   }),
   agent: z.object({
-    provider: z.enum(['openai', 'anthropic', 'ollama']).default('openai'),
+    provider: z.enum(['openai', 'anthropic', 'gemini', 'kimi', 'ollama']).default('openai'),
     model: z.string().min(1),
     maxIterations: z.number().int().positive().max(30).default(10),
     temperature: z.number().min(0).max(2).default(0.7),

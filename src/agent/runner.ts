@@ -234,6 +234,28 @@ export class ActionsAgent {
       });
     }
 
+    if (provider === 'gemini') {
+      if (!config.providers.gemini) {
+        return new NoopProvider();
+      }
+      return new OpenAIProvider({
+        apiKey: config.providers.gemini.apiKey,
+        apiBase: config.providers.gemini.apiBase,
+        model: config.providers.gemini.model,
+      });
+    }
+
+    if (provider === 'kimi') {
+      if (!config.providers.kimi) {
+        return new NoopProvider();
+      }
+      return new OpenAIProvider({
+        apiKey: config.providers.kimi.apiKey,
+        apiBase: config.providers.kimi.apiBase,
+        model: config.providers.kimi.model,
+      });
+    }
+
     const ollama = config.providers.ollama;
     if (!ollama) {
       return new NoopProvider();
