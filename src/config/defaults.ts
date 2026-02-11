@@ -36,4 +36,9 @@ export const DEFAULT_CONFIG: AppConfig = {
     enabled: true,
     path: './audit.log',
   },
+  appStore: {
+    enabled: true,
+    callbackTimeoutMs: 10000,
+    maxTrackedJobs: 100,
+  },
 };

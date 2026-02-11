@@ -112,6 +112,33 @@ describe('daemon API', () => {
     expect(configUpdate.statusCode).toBe(200);
     expect(configUpdate.json()).toEqual({ success: true });
 
+    const install = await app.inject({
+      method: 'POST',
+      url: '/apps/install',
+      payload: {
+        installId: 'install-test-1',
+        slug: 'git',
+        script: 'echo installing-git',
+      },
+    });
+    expect(install.statusCode).toBe(200);
+    expect(install.json()).toMatchObject({
+      status: 'installing',
+      installId: 'install-test-1',
+      slug: 'git',
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 40));
+    const appStatus = await app.inject({
+      method: 'GET',
+      url: '/apps/status?installId=install-test-1',
+    });
+    expect(appStatus.statusCode).toBe(200);
+    expect(appStatus.json().job).toMatchObject({
+      installId: 'install-test-1',
+      operation: 'install',
+    });
+
     await app.close();
   });
 });

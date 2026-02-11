@@ -49,6 +49,15 @@ export const appConfigSchema = z.object({
     enabled: z.boolean().default(true),
     path: z.string().default('./audit.log'),
   }),
+  appStore: z
+    .object({
+      enabled: z.boolean().default(true),
+      callbackUrl: z.string().url().optional(),
+      callbackToken: z.string().min(1).optional(),
+      callbackTimeoutMs: z.number().int().positive().default(10000),
+      maxTrackedJobs: z.number().int().positive().max(500).default(100),
+    })
+    .optional(),
 });
 
 export type AppConfig = z.infer<typeof appConfigSchema>;
