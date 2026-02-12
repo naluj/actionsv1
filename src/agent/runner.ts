@@ -220,6 +220,7 @@ export class ActionsAgent {
         apiKey: config.providers.openai.apiKey,
         apiBase: config.providers.openai.apiBase,
         model: config.providers.openai.model,
+        providerName: 'openai',
       });
     }
 
@@ -242,6 +243,7 @@ export class ActionsAgent {
         apiKey: config.providers.gemini.apiKey,
         apiBase: config.providers.gemini.apiBase,
         model: config.providers.gemini.model,
+        providerName: 'gemini',
       });
     }
 
@@ -253,6 +255,7 @@ export class ActionsAgent {
         apiKey: config.providers.kimi.apiKey,
         apiBase: config.providers.kimi.apiBase,
         model: config.providers.kimi.model,
+        providerName: 'kimi',
       });
     }
 
